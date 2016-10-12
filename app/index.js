@@ -1,23 +1,17 @@
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import { createStore, applyMiddleware } from 'redux';
-import { selectSubreddit, fetchPosts, fetchPostsIfNeeded } from './actions/action';
-import rootReducer from './reducers/reducers';
 
-const loggerMiddleware = createLogger();
+import React from 'react'
+import { render } from 'react-dom'
+import Root from './containers/Root'
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(
-    thunkMiddleware, //allows dispatch of functions
-    loggerMiddleware
-  )
+render(
+  <Root />,
+  document.getElementById('root')
 )
 
-store.dispatch(selectSubreddit('reactjs'));
-store.dispatch(fetchPosts('reactjs')).then(() =>
-  console.log(store.getState())
-)
-store.dispatch(fetchPostsIfNeeded('reactjs')).then(() =>
-  console.log(store.getState())
-)
+// store.dispatch(selectSubreddit('reactjs'));
+// store.dispatch(fetchPosts('reactjs')).then(() =>
+//   console.log('getState', store.getState())
+// )
+// store.dispatch(fetchPostsIfNeeded('reactjs')).then(() =>
+//   console.log('getState', store.getState())
+// )
